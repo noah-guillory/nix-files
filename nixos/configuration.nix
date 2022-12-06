@@ -101,6 +101,12 @@
     ];
   };
 
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = ["FiraCode"]; })
+    fira-code
+    fira-code-symbols
+  ];
+
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "noah";

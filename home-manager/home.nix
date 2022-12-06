@@ -45,6 +45,9 @@
     homeDirectory = "/home/noah";
     packages = with pkgs; [
       ripgrep
+      vscode
+      _1password
+      _1password-gui
     ];
   };
 
