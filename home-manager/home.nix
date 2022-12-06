@@ -43,6 +43,9 @@
   home = {
     username = "noah";
     homeDirectory = "/home/noah";
+    packages = with pkgs; [
+      ripgrep
+    ];
   };
 
   # Add stuff for your user as you see fit:

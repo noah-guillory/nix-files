@@ -28,6 +28,10 @@
   # Set your time zone.
   time.timeZone = "America/Chicago";
 
+    nix.extraOptions = ''
+    experimental-features = nix-command flakes
+    '';
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -79,10 +83,13 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  programs.fish.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.noah = {
     isNormalUser = true;
     description = "Noah Guillory";
+    shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
