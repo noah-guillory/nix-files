@@ -95,12 +95,9 @@
       firefox
       kate
       ark
-      git
-      vim
       home-manager
     ];
   };
-
   fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = ["FiraCode"]; })
     fira-code
@@ -122,8 +119,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    emacs-gtk
+    git
+    wget
+    vim
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
