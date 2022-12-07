@@ -11,9 +11,20 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  #boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
+  boot.loader = {
+    grub = {
+      enable = true;
+      devices = ["nodev"];
+      efiSupport = true;
+      useOSProber = true;
+      configurationLimit = 5;
+    };
+    timeout = 5;
+  };
 
   networking.hostName = "noah-pc"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -84,7 +95,7 @@
   # services.xserver.libinput.enable = true;
 
   programs.fish.enable = true;
-
+  users.defaultUserShell = pkgs.fish;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.noah = {
     isNormalUser = true;
@@ -123,7 +134,27 @@
     git
     wget
     vim
+    nodejs
+    fd
+    python311
+    ispell
   ];
+
+  system.autoUpgrade = {
+    enable = true;
+    channel = "https://nixos.org/channels/nixos-unstable";
+  };
+
+  nix = {
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
+
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
