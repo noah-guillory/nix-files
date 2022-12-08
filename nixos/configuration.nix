@@ -77,6 +77,8 @@
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  # Temp fix for buggy monitor behavior
+  hardware.pulseaudio.extraConfig = "unload-module module-switch-on-port-available";
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
